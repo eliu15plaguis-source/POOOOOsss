@@ -2,7 +2,7 @@ class Paciente:
 
     PREVISIONES: set[str] = {"Fonasa", "Isapre"}
 
-    def _init_(self, rut: str, nombre: str, edad: int, prevision: str):
+    def __init__(self, rut: str, nombre: str, edad: int, prevision: str):
         self.rut = rut
         self.nombre = nombre
         self.edad = edad
