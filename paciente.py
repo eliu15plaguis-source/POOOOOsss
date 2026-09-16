@@ -10,8 +10,8 @@ class Paciente:
 
     @property
     def rut(self) -> str:
-        return
+        return self._rut
 
     @rut.setter
     def rut(self, rut: str)-> None:
-        self.rut = rut
+        self._rut = rut
