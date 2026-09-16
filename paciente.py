@@ -15,3 +15,33 @@ class Paciente:
     @rut.setter
     def rut(self, rut: str)-> None:
         self._rut = rut
+
+    @property
+    def nombre(self) -> str:
+        return self._nombre
+
+    @nombre.setter
+    def nombre(self, nombre: str)-> None:
+        self._nombre = nombre
+
+    @property
+    def edad(self) -> str:
+        return self._edad
+
+    @edad.setter
+    def edad(self, edad: str)-> None:
+        self._edad = edad
+
+    @property
+    def prevision(self) -> str:
+        return self._prevision
+
+    @prevision.setter
+    def prevision(self, prevision: str)-> None:
+        self._prevision = prevision
+
+    def __str__(self)->str:
+        return f"informacion del Paciente:\nRUT: {self.rut}\nNombre: {self.nombre}\nEdad: {self.edad}\nPrevision: {self.prevision}"
+
+    def __repr__(self)->str:
+        return f"Paciente(rut='{self.rut}', nombre='{self.nombre}', edad='{self.edad}', prevision='{self.prevision}')"
