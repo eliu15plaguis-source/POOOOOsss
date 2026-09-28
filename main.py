@@ -31,7 +31,7 @@ def leer_numero(mensaje:str)->int:
 
 def menu()->int:
     opcion=-1
-    while opcion<0 or opcion>5:
+    while opcion<0 or opcion>6:
         print("Menu de clinica")
         print("1.- Agregar paciete")
         print("2.- Editar paciente")
@@ -114,6 +114,49 @@ def menu_departamentos()->int:
         print("0.- salir")
         opcion2 = int(input("Seleccione una opcion: "))
     return opcion2
+
+def agregar_departamento()->None:
+    nombre = input("Ingrese el nombre del departamento: ")
+    cantidad_camas = leer_numero("Ingrese la cantidad de camas del departamento: ")
+    pacientes_departamento = []
+    departamento = Departamento(nombre, cantidad_camas, pacientes_departamento)
+    departamentos.append(departamento)
+    print("Departamento agregado exitosamente.")
+
+def editar_departamento()->None:
+    nombre = input("Ingrese el nombre del departamento a editar: ")
+    for departamento in departamentos:
+        if departamento.nombre == nombre:
+            print("Menu de edicion de departamento")
+            print("1.- Editar nombre")
+            print("2.- Editar cantidad de camas")
+            print("3.- Agregar paciente al departamento")
+            print("4.- Eliminar paciente del departamento")
+            opcion = leer_numero("Seleccione una opcion: ")
+            if opcion == 1:
+                nuevo_nombre = input("Ingrese el nuevo nombre: ")
+                departamento.nombre = nuevo_nombre
+            elif opcion == 2:
+                nueva_cantidad_camas = leer_numero("Ingrese la nueva cantidad de camas: ")
+                departamento.cantidad_camas = nueva_cantidad_camas
+            elif opcion == 3:
+                paciente = buscar_paciente()
+                if paciente:
+                    departamento.pacientes.append(paciente)
+                    print("Paciente agregado al departamento.")
+                else:
+                    print("Paciente no encontrado.")
+            elif opcion == 4:
+                paciente = buscar_paciente()
+                if paciente and paciente in departamento.pacientes:
+                    departamento.pacientes.remove(paciente)
+                    print("Paciente eliminado del departamento.")
+                else:
+                    print("Paciente no encontrado en el departamento.")
+            return
+    print("Departamento no encontrado.")
+
+
 
 def main():
     op=-1
