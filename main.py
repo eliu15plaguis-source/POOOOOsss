@@ -17,7 +17,11 @@ def agregar_paciente()->None:
         prevision = "Fonasa"
     else:
         prevision = "Isapre"
-    paciente = Paciente(rut, nombre, edad, prevision)
+    try:
+        paciente = Paciente(rut, nombre, edad, prevision)
+    except (ValueError, TypeError) as e:
+        print(f"Error al crear el paciente: {e}")
+        return
     pacientes.append(paciente)
     print("Paciente agregado exitosamente.")
 
@@ -85,12 +89,18 @@ def editar_paciente()->None:
             print("2.- Isapre")
             print("0.- No hacer cambios")
             nueva_prevision = input("Seleccione la nueva prevision: ")
-            if nueva_prevision == "1":
-                paciente.prevision = "Fonasa"
-            elif nueva_prevision == "2":
-                paciente.prevision = "Isapre"
-            else:
-                print("No se realizaron cambios en la prevision")
+            try:
+                if nueva_prevision == "1":
+                    paciente.prevision = "Fonasa"
+                elif nueva_prevision == "2":
+                    paciente.prevision = "Isapre"
+                elif nueva_prevision == "0":
+                    print("No se realizaron cambios en la prevision")
+                else:
+                    print("Opcion no valida. No se realizaron cambios en la prevision.")
+            except ValueError as e:
+                print(f"Error al actualizar la prevision: {e}")
+                return
     else:
         print("paciente no encontrado.")
 
